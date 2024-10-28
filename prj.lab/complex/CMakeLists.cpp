@@ -1,1 +1,1 @@
-add_subdirectory(complex)
+add_library(complex complex.cpp complex.hpp)
