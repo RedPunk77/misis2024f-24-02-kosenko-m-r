@@ -1,12 +1,6 @@
-STAMP: 20241024-114825
-ERROR: file codeforces.id is absent
-ERROR: file CMakeLists.txt is absent
-ERROR: file codeforces.id is absent
-ERROR: file prj.codeforces/CMakeLists.txt is absent
-ERROR: file prj.lab/CMakeLists.txt is absent
-ERROR: file prj.lab/complex/CMakeLists.txt is absent
-ERROR: file prj.test/CMakeLists.txt is absent
+STAMP: 20241030-075844
+ERROR: codeforces id is wrong
 ERROR: file prj.test/complex_doctest.cpp is absent
 ERROR: file prj.test/complex_test.cpp is absent
 ERROR: CMake generator failed
-OK: folder prj.codeforces structure is correct
+ERROR: invalid file name 2033A
