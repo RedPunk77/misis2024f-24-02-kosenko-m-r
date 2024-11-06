@@ -1,0 +1,15 @@
+CMake Error at D:/programs/vcpkg/scripts/buildsystems/vcpkg.cmake:596 (_add_executable):
+  Cannot find source file:
+
+    complex_test.cpp
+Call Stack (most recent call first):
+  prj.test/CMakeLists.txt:1 (add_executable)
+
+
+CMake Error at D:/programs/vcpkg/scripts/buildsystems/vcpkg.cmake:596 (_add_executable):
+  No SOURCES given to target: complex_test
+Call Stack (most recent call first):
+  prj.test/CMakeLists.txt:1 (add_executable)
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.
