@@ -52,32 +52,30 @@ public:
         return Rational(vpriv.Getfrac() - frac);
     }
 
-   /* Rational operator*(const Rational& vpriv) const {
-        return Rational(vpriv.Getinteger() * integer - frac * vpriv.Getfrac(),
-            vpriv.Getinteger() * frac + vpriv.Getfrac() * integer);
-    }
+     Rational operator*(const Rational& vpriv) const {
+         return Rational(vpriv.Getfrac() * frac);
+     }
 
-    Rational operator/(const Rational& vpriv) const {
-        double dop = (vpriv.Getinteger() * vpriv.Getinteger() + vpriv.Getfrac() * vpriv.Getfrac());
-        if (dop == 0) {
-            throw std::runtime_error("Division by zero");
-        }
-        return Rational((integer * vpriv.Getinteger() - frac * vpriv.Getfrac()) / dop,
-            (integer * vpriv.Getfrac() + frac * vpriv.Getinteger()) / dop);
-    }*/
+     Rational operator/(const Rational& vpriv) const {
+         double dop = ( vpriv.Getfrac());
+         if (dop == 0) {
+             throw std::runtime_error("Division by zero");
+         }
+         return Rational(vpriv.Getfrac() / frac);
+     }
 
     void print() const {
         if (frac >= 0) {
-            std::cout <<frac;
+            std::cout << frac;
         }
         else {
-            std::cout <<-frac;
+            std::cout << -frac;
         }
     }
 };
 
 //Функция получения правильно введенного целого числа
-int getInteger(const std::string& prompt) {
+double getfrac(const std::string& prompt) {
     std::string input;
     while (true) {
         std::cout << prompt;
@@ -90,7 +88,7 @@ int getInteger(const std::string& prompt) {
         //if (input.empty() or !std::all_of(input.begin(), input.end(), ::isdigit)) {
         //    std::cerr << "Ошибка: введено некорректное значение. Введите целое число" << std::endl;
         //    continue; //Запрашиваем ввод
-        //}
+        //}n
 
         //Преобразование строки в целое число
         try {
@@ -108,12 +106,12 @@ int getInteger(const std::string& prompt) {
 int main() {
     setlocale(LC_ALL, "RUS");
 
-    ll frac1 = getInteger("Введите 1е число: ");
+    double frac1 = getfrac("Введите 1е число: ");
     Rational number1(frac1);
-    ll frac2 = getInteger("Введите 2е число: ");
+    double frac2 = getfrac("Введите 2е число: ");
     Rational number2(frac2);
 
-    Rational sum = number1 + number2;  
+    Rational sum = number1 + number2;
     std::cout << "Сумма чисел: ";
     sum.print();
     std::cout << "\n";
@@ -123,12 +121,12 @@ int main() {
     diff.print();
     std::cout << "\n";
 
-    /*Rational mult = number1 * number2;
+    Rational mult = number1 * number2;
     std::cout << "Произведение чисел: ";
     mult.print();
-    std::cout << std::endl;*/
+    std::cout << std::endl;
 
-    /*try {
+    try {
         Rational Joy_Division = number1 / number2;
         std::cout << "Частное: ";
         Joy_Division.print();
@@ -136,7 +134,7 @@ int main() {
     }
     catch (const std::runtime_error& error) {
         std::cerr << error.what() << std::endl;
-    }*/
+    }
 
     return 0;
 }
