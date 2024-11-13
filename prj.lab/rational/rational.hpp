@@ -78,7 +78,7 @@ public:
     }
 };
 
-//Функция получения правильно введенного целого числа
+//Функция получения правильно введенного рационального числа
 double getfrac(const std::string& prompt) {
     std::string input;
     while (true) {
@@ -90,19 +90,19 @@ double getfrac(const std::string& prompt) {
 
         //Проверка, содержит ли строка только цифры
         //if (input.empty() or !std::all_of(input.begin(), input.end(), ::isdigit)) {
-        //    std::cerr << "Ошибка: введено некорректное значение. Введите целое число" << std::endl;
+        //    std::cerr << "Ошибка: введено некорректное значение. Введите рациональное число" << std::endl;
         //    continue; //Запрашиваем ввод
         //}n
 
-        //Преобразование строки в целое число
+        //Преобразование строки в рационального число
         try {
-            return std::stod(input); //Преобразование в целое число
+            return std::stod(input); //Преобразование в рационального число
         }
         catch (const std::invalid_argument&) {
-            std::cerr << "Ошибка: введено некорректное значение. Введите целое число" << std::endl;
+            std::cerr << "Ошибка: введено некорректное значение. Введите рациональное число" << std::endl;
         }
         catch (const std::out_of_range&) {
-            std::cerr << "Ошибка: переполнение целочисленного типа int" << std::endl;
+            std::cerr << "Ошибка: переполнение типа double" << std::endl;
         }
     }
 }
@@ -121,7 +121,7 @@ int main() {
     std::cout << "\n";
 
     Rational diff = number1 - number2;
-    std::cout << "Разность чисел: ";
+    std::cout << "Модуль разности чисел: ";
     diff.print();
     std::cout << "\n";
 
