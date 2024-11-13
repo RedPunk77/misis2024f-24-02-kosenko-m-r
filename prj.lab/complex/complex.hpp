@@ -25,113 +25,88 @@
 #include <random>
 #include <chrono>
 
-using namespace std;
-using vll = vector <long long>;
-using vll2 = vector <vll>;
-using chv = vector <char>;
-using chv2 = vector <chv>;
-using ull = uint64_t;
-using ll = int64_t;
-using ui = uint32_t;
-using ush = uint16_t;
-const ll INF = 1e18;
-const double EPS = 1e-12;
-
-class Rational {
+class Complex {
 private:
-    //ll integer;
-    double frac;
-
+    double real;
+    double image;
 public:
-    Rational(double i = 0.0) : frac(i) {}
-
-    //ll Getinteger() const { return integer; }
-    double Getfrac() const { return frac; }
-
-    Rational operator+(const Rational& vpriv) const {
-        return Rational(vpriv.Getfrac() + frac);
+    Complex(double r = 0.0, double i = 0.0) : real(r), image(i) {}
+    double GetReal() const { return real; }
+    double GetImage() const { return image; }
+    Complex operator+(const Complex& vpriv) const {
+        return Complex(vpriv.GetReal() + real, vpriv.GetImage() + image);
     }
-
-    Rational operator-(const Rational& vpriv) const {
-        return Rational(vpriv.Getfrac() - frac);
+    Complex operator-(const Complex& vpriv) const {
+        return Complex(vpriv.GetReal() - real, vpriv.GetImage() - image);
     }
-
-     Rational operator*(const Rational& vpriv) const {
-         return Rational(vpriv.Getfrac() * frac);
-     }
-
-     Rational operator/(const Rational& vpriv) const {
-         double dop = ( vpriv.Getfrac());
-         if (dop == 0) {
-             throw std::runtime_error("Division by zero");
-         }
-         return Rational(vpriv.Getfrac() / frac);
-     }
-
+    Complex operator*(const Complex& vpriv) const {
+        return Complex(vpriv.GetReal() * real - image * vpriv.GetImage(),
+            vpriv.GetReal() * image + vpriv.GetImage() * real);
+    }
+    Complex operator/(const Complex& vpriv) const {
+        double dop = (vpriv.GetReal() * vpriv.GetReal() + vpriv.GetImage() * vpriv.GetImage());
+        if (dop == 0) {
+            throw std::runtime_error("Division by zero");
+        }
+        return Complex((real * vpriv.GetReal() - image * vpriv.GetImage()) / dop,
+            (real * vpriv.GetImage() + image * vpriv.GetReal()) / dop);
+    }
     void print() const {
-        if (frac >= 0) {
-            std::cout << frac;
+        if (image >= 0) {
+            std::cout << real << " + " << image << "i";
         }
         else {
-            std::cout << -frac;
+            std::cout << real << " - " << -image << "i";
         }
     }
 };
-
-//Функция получения правильно введенного рационального числа
-double getfrac(const std::string& prompt) {
+//Функция получения правильно введенного целого числа
+int getInteger(const std::string& prompt) {
     std::string input;
     while (true) {
         std::cout << prompt;
         std::getline(std::cin, input); //Чтение строки целиком
-
         //Удаление пробелов
         input.erase(remove_if(input.begin(), input.end(), ::isspace), input.end());
-
         //Проверка, содержит ли строка только цифры
-        //if (input.empty() or !std::all_of(input.begin(), input.end(), ::isdigit)) {
-        //    std::cerr << "Ошибка: введено некорректное значение. Введите рациональное число" << std::endl;
-        //    continue; //Запрашиваем ввод
-        //}n
-
-        //Преобразование строки в рационального число
+        if (input.empty() or !std::all_of(input.begin(), input.end(), ::isdigit)) {
+            std::cerr << "Ошибка: введено некорректное значение. Введите целое число" << std::endl;
+            continue; //Запрашиваем ввод
+        }
+        //Преобразование строки в целое число
         try {
-            return std::stod(input); //Преобразование в рационального число
+            return std::stoi(input); //Преобразование в целое число
         }
         catch (const std::invalid_argument&) {
-            std::cerr << "Ошибка: введено некорректное значение. Введите рациональное число" << std::endl;
+            std::cerr << "Ошибка: введено некорректное значение. Введите целое число" << std::endl;
         }
         catch (const std::out_of_range&) {
-            std::cerr << "Ошибка: переполнение типа double" << std::endl;
+            std::cerr << "Ошибка: переполнение целочисленного типа int" << std::endl;
         }
     }
 }
-
 int main() {
     setlocale(LC_ALL, "RUS");
-
-    double frac1 = getfrac("Введите 1е число: ");
-    Rational number1(frac1);
-    double frac2 = getfrac("Введите 2е число: ");
-    Rational number2(frac2);
-
-    Rational sum = number1 + number2;
+    int real1 = getInteger("Введите действительную часть 1-ого числа: ");
+    int imaginary1 = getInteger("Введите мнимую часть 1-ого числа: ");
+    Complex number1(real1, imaginary1);
+    int real2 = getInteger("Введите действительную часть 2-ого числа: ");
+    int imaginary2 = getInteger("Введите мнимую часть 2-ого числа: ");
+    Complex number2(real2, imaginary2);
+    Complex sum = number1 + number2;
     std::cout << "Сумма чисел: ";
     sum.print();
     std::cout << "\n";
-
-    Rational diff = number1 - number2;
-    std::cout << "Модуль разности чисел: ";
+    Complex diff = number1 - number2;
+    std::cout << "Разность чисел: ";
     diff.print();
     std::cout << "\n";
-
-    Rational mult = number1 * number2;
+    Complex mult = number1 + number2;
     std::cout << "Произведение чисел: ";
     mult.print();
     std::cout << std::endl;
-
     try {
-        Rational Joy_Division = number1 / number2;
+        Complex Joy_Division = number1/number2;
         std::cout << "Частное: ";
         Joy_Division.print();
         std::cout << std::endl;
@@ -139,7 +114,6 @@ int main() {
     catch (const std::runtime_error& error) {
         std::cerr << error.what() << std::endl;
     }
-
     return 0;
 }
 
