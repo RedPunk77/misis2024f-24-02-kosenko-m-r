@@ -33,5 +33,7 @@ main() {
 	if (!(k % 2) && k >= 4) cout << "YES";
 	else cout << "NO";
 
+	int u;
+
 	return 0;
 }
