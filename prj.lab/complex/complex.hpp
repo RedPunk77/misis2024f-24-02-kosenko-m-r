@@ -1,4 +1,3 @@
-
 #pragma once
 #ifndef COMPLEX_HPP
 #define COMPLEX_HPP
@@ -65,13 +64,6 @@ struct Complex {
 [[nodiscard]] Complex operator/(const double lhs, const Complex& rhs);
 [[nodiscard]] Complex operator/(const Complex& lhs, const double rhs);
 [[nodiscard]] Complex pow(const Complex& lhs, int n);
-
-//[[nodiscard]] bool operator==(const Complex& lhs, const Complex& rhs) noexcept;
-//[[nodiscard]] bool operator!=(const Complex& lhs, const Complex& rhs) noexcept;
-//[[nodiscard]] bool operator==(const Complex& lhs, const double rhs) noexcept;
-//[[nodiscard]] bool operator==(const double lhs, const Complex& rhs) noexcept;
-//[[nodiscard]] bool operator!=(const Complex& lhs, const double rhs) noexcept;
-//[[nodiscard]] bool operator!=(const double lhs, const Complex& rhs) noexcept;
 [[nodiscard]] double abs(const Complex& rhs) noexcept;
 
 bool testParse(const std::string& str);
