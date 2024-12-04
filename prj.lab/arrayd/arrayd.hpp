@@ -39,7 +39,6 @@ class ArrayD {
 	std::ptrdiff_t capacity_ = 0;  //размер буффера
 	std::ptrdiff_t size_ = 0;      //число элементов в массиве
 	double* data_ = 0;
-	void grow();
 };
 
 
