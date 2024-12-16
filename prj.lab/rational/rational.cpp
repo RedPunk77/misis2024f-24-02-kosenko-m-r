@@ -6,7 +6,7 @@
 Rational::Rational(const std::int32_t num, const std::int32_t den)
     : num_(num), den_(den) {
     if (0 == den_) {
-        throw std::invaliden_argument("Zero denumenator in Rational ctor");
+        throw std::invalid_argument("Zero denumenator in Rational ctor");
     }
     if (den_ < 0) {
         num_ = -num_;
@@ -25,7 +25,7 @@ Rational& Rational::gcd() {
         return *this;
     };
     while (a % b != 0) {
-        a %= b;
+        a = a % b;
         std::swap(a, b);
     }
     num_ /= b;
@@ -109,10 +109,12 @@ Rational operator+(const Rational& lhs, const Rational& rhs) noexcept { return R
 Rational operator-(const Rational& lhs, const Rational& rhs) noexcept { return Rational{ lhs } -= rhs; }
 Rational operator*(const Rational& lhs, const Rational& rhs) noexcept { return Rational{ lhs } *= rhs; }
 Rational operator/(const Rational& lhs, const Rational& rhs) { return Rational{ lhs } /= rhs; }
+
 Rational operator+(const Rational& lhs, const int32_t rhs) noexcept { return Rational{ lhs } += rhs; }
 Rational operator-(const Rational& lhs, const int32_t rhs) noexcept { return Rational{ lhs } -= rhs; };
 Rational operator*(const Rational& lhs, const int32_t rhs) noexcept { return Rational{ lhs } *= rhs; };
 Rational operator/(const Rational& lhs, const int32_t rhs) { return Rational{ lhs } /= rhs; }
+
 Rational operator+(const int32_t lhs, const Rational& rhs) noexcept { return operator+(rhs, lhs); }
 Rational operator-(const int32_t lhs, const Rational& rhs) noexcept { return operator-(rhs, lhs); }
 Rational operator*(const int32_t lhs, const Rational& rhs) noexcept { return operator*(rhs, lhs); }
@@ -127,16 +129,16 @@ std::ostream& Rational::WriteTo(std::ostream& ostrm) const noexcept {
 std::istream& Rational::ReadFrom(std::istream& istrm) noexcept {
     int32_t num = 0;
     int32_t den = 1;
-    char sep = '0';
+    char separator_ = '0';
     istrm >> num;
-    istrm.get(sep);
+    istrm.get(separator_);
     int32_t tr = istrm.peek();
     istrm >> den;
     if (!istrm || tr > '9' || tr < '0') {
         istrm.setstate(std::ios_base::failbit);
         return istrm;
     }if (istrm.good() || istrm.eof()) {
-        if ('/' == sep && den > 0) {
+        if ('/' == separator_ && den > 0) {
             *this = Rational(num, den);
         }
         else {
