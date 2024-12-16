@@ -18,12 +18,14 @@ public:
 
 	[[nodiscard]] std::int32_t num() const noexcept { return num_; }
 	[[nodiscard]] std::int32_t den() const noexcept { return den_; }
+
 	[[nodiscard]] bool operator==(const Rational& lhs) const noexcept { return (num_ * lhs.den_ == den_ * lhs.num_); }
 	[[nodiscard]] bool operator!=(const Rational& lhs) const noexcept { return !operator==(lhs); }
 	[[nodiscard]] bool operator<(const Rational& rhs) const noexcept;
 	[[nodiscard]] bool operator<=(const Rational& rhs) const noexcept;
 	[[nodiscard]] bool operator>(const Rational& rhs) const noexcept;
 	[[nodiscard]] bool operator>=(const Rational& rhs) const noexcept;
+
 	[[nodiscard]] Rational operator-() const noexcept { return { -num_, den_ }; }
 
 	Rational& operator+=(const Rational& rhs) noexcept;
@@ -38,6 +40,8 @@ public:
 
 
 	std::ostream& WriteTo(std::ostream& ostrm) const noexcept;
+
+
 	std::istream& ReadFrom(std::istream& istrm) noexcept;
 
 	static const char separator{ '/' };
@@ -53,10 +57,12 @@ private:
 [[nodiscard]] Rational operator-(const Rational& lhs, const Rational& rhs) noexcept;
 [[nodiscard]] Rational operator*(const Rational& lhs, const Rational& rhs) noexcept;
 [[nodiscard]] Rational operator/(const Rational& lhs, const Rational& rhs);
+
 [[nodiscard]] Rational operator+(const Rational& lhs, const int32_t rhs) noexcept;
 [[nodiscard]] Rational operator-(const Rational& lhs, const int32_t rhs) noexcept;
 [[nodiscard]] Rational operator*(const Rational& lhs, const int32_t rhs) noexcept;
 [[nodiscard]] Rational operator/(const Rational& lhs, const int32_t rhs);
+
 [[nodiscard]] Rational operator+(const int32_t lhs, const Rational& rhs) noexcept;
 [[nodiscard]] Rational operator-(const int32_t lhs, const Rational& rhs) noexcept;
 [[nodiscard]] Rational operator*(const int32_t lhs, const Rational& rhs) noexcept;
