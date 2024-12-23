@@ -1,10 +1,8 @@
-STAMP: 20241217-073928
+STAMP: 20241223-160438
 OK: file codeforces.id is correct
 OK: CMake generator successed
 OK: folder prj.codeforces structure is correct
-STATUS: lab complex - test-ok
-STATUS: lab rational - test-ok
 ERROR: lab arrayd - test build failed
 ERROR: lab arrayt - test build failed
-ERROR: lab stackl - test build failed
-ERROR: lab queuea - test build failed
+STATUS: lab complex - test-ok
+STATUS: lab rational - test-ok
