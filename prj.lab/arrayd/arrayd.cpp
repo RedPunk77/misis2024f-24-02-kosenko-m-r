@@ -14,7 +14,7 @@ ArrayD::ArrayD(const ArrayD& rhs)
 ArrayD::ArrayD(const ptrdiff_t size)
     : size_(size), capacity_(size) {
     if (size <= 0) {
-        throw std::invalid_argument("Zero size isn`t allowed in ArrayD ctor");
+        throw std::invalid_argument("Zero size is not allowed in ArrayD ctor");
     }
     data_ = new double[size] {0};
 }
@@ -45,7 +45,7 @@ void ArrayD::Resize(const std::ptrdiff_t size) {
         throw std::invalid_argument("Resizing by negative value");
     }
     if (size > capacity_) {
-      
+       
         auto new_data = new double[size] {};
         for (int i = 0; i < size_; ++i) {
             new_data[i] = data_[i];
@@ -55,12 +55,12 @@ void ArrayD::Resize(const std::ptrdiff_t size) {
         capacity_ = size; 
     }
     else {
-     
+        
         for (std::ptrdiff_t i = size; i < size_; ++i) {
             data_[i] = 0;
         }
     }
-    size_ = size;
+    size_ = size; 
 }
 
 
@@ -91,14 +91,15 @@ ArrayD& ArrayD::operator=(ArrayD&& rhs) noexcept {
 }
 
 
+
 void ArrayD::Insert(const std::ptrdiff_t idx, const double val) {
     if (idx > size_ || idx < 0) {
         throw std::invalid_argument("ArrayD::Insert - invalid argument");
     }
 
-  
+   
     if (size_ == capacity_) {
-       
+        
         std::ptrdiff_t new_capacity;
         if (capacity_ == 0) {
             new_capacity = 1;
@@ -119,13 +120,14 @@ void ArrayD::Insert(const std::ptrdiff_t idx, const double val) {
         capacity_ = new_capacity; 
     }
 
+   
     for (std::ptrdiff_t i = size_; i > idx; --i) {
         data_[i] = data_[i - 1];
     }
 
     
     data_[idx] = val;
-    ++size_;
+    ++size_; 
 }
 
 
@@ -143,5 +145,6 @@ void ArrayD::Remove(const std::ptrdiff_t idx) {
         }
     }
 
+    --size_;
 
 }
