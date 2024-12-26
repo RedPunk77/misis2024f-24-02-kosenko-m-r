@@ -44,17 +44,18 @@ D:/projects/2024-misis-fall/misis2024f-24-02-kosenko-m-r/bin.check/Release/docte
 Release/D:/projects/2024-misis-fall/misis2024f-24-02-kosenko-m-r/bin.check/doctest_stackl.exe
 Release/D:/projects/2024-misis-fall/misis2024f-24-02-kosenko-m-r/bin.check/doctest_stackl.exe.exe
 4/8 Test #8: doctest_stackl ...................***Not Run   0.00 sec
-5/8 Test #3: doctest_complex ..................   Passed    0.04 sec
-6/8 Test #4: doctest_complex_io ...............   Passed    0.04 sec
-7/8 Test #5: doctest_rational .................   Passed    0.03 sec
-8/8 Test #6: doctest_rational_io ..............   Passed    0.02 sec
+5/8 Test #3: doctest_complex ..................   Passed    0.13 sec
+6/8 Test #4: doctest_complex_io ...............***Failed    0.08 sec
+7/8 Test #5: doctest_rational .................   Passed    0.06 sec
+8/8 Test #6: doctest_rational_io ..............   Passed    0.04 sec
 
-50% tests passed, 4 tests failed out of 8
+38% tests passed, 5 tests failed out of 8
 
-Total Test time (real) =   0.05 sec
+Total Test time (real) =   0.14 sec
 
 The following tests FAILED:
 	  1 - doctest_arrayd (Not Run)
 	  2 - doctest_arrayt (Not Run)
+	  4 - doctest_complex_io (Failed)
 	  7 - doctest_queuea (Not Run)
 	  8 - doctest_stackl (Not Run)
