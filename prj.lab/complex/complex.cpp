@@ -1,3 +1,5 @@
+//😎
+
 #include <complex/complex.hpp>
 
 Complex operator*(const double lhs, const Complex& rhs) noexcept { return operator*(Complex(lhs), rhs); }
